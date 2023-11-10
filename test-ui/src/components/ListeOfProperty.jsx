@@ -1,61 +1,64 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import {getAllProperties} from '../services/todoservice.js';
 
-function ListeOfProperty() {
-    const dummyData = [
-        {
-            "id": 1,
-            "title": "Monlisa",
-            "description": "this is my dream house",
-            "completed": false
-        },
-        {
-            "id": 2,
-            "title": "lisa",
-            "description": "this is my dream house",
-            "completed": true
-        },
-        {
-            "id": 3,
-            "title": "Mona",
-            "description": "this is my dream house",
-            "completed": false
-        },
-        {
-            "id": 4,
-            "title": "Ashino",
-            "description": "this is my dream house",
-            "completed": false
-        },
-    ]
+const ListeOfProperty = () => {
+    const [property, setProperty] = useState([]);
 
-    const [todo, setTodo] = useState(dummyData)
+    useEffect(() => {
+        listProperty();
+    }, []);
+
+    function listProperty() {
+        getAllProperties()
+            .then((response) => {
+                setProperty(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching properties:', error);
+            });
+    }
 
     return (
-        <div className='container'>
+        <div className="container">
             <h2 className="text-center">List of property</h2>
             <div>
                 <table className="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Property Title</th>
-                        <th>Property Description</th>
-                        <th>Property complete</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Bedroom</th>
+                        <th>Bathroom</th>
+                        <th>Size</th>
+                        <th>Rent</th>
+                        <th>Location</th>
+                        <th>Description</th>
+                        <th>Activate</th>
+                        <th>Deleted</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {todo.map((todo) => (
-                        <tr key={todo.id}>
-                            <td>{todo.title}</td>
-                            <td>{todo.description}</td>
-                            <td>{todo.completed ? 'YES' : 'NO'}</td>
+                    {property.map((property) => (
+                        <tr key={property.id}>
+                            <td>{property.id}</td>
+                            <td>{property.name}</td>
+                            <td>{property.type}</td>
+                            <td>{property.bedroom}</td>
+                            <td>{property.bathroom}</td>
+                            <td>{property.size}</td>
+                            <td>{property.rent}</td>
+                            <td>{property.location}</td>
+                            <td>{property.description}</td>
+                            <td>{property.active ? 'YES' : 'NO'}</td>
+                            <td>{property.delete ? 'YES' : 'NO'}</td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default ListeOfProperty
+export default ListeOfProperty;

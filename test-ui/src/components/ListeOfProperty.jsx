@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {getAllProperties} from '../services/todoservice.js';
+import {useNavigate} from "react-router-dom";
 
 const ListeOfProperty = () => {
     const [property, setProperty] = useState([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         listProperty();
@@ -18,9 +20,14 @@ const ListeOfProperty = () => {
             });
     }
 
+    function addNewProperty() {
+        navigate('/add-todo')
+    }
+
     return (
         <div className="container">
             <h2 className="text-center">List of property</h2>
+            <button className='btn btn-primary mb-2' onClick={addNewProperty}></button>
             <div>
                 <table className="table table-bordered table-striped">
                     <thead>

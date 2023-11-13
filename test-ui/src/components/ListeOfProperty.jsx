@@ -27,7 +27,7 @@ const ListeOfProperty = () => {
     return (
         <div className="container">
             <h2 className="text-center">List of property</h2>
-            <button className='btn btn-primary mb-2' onClick={addNewProperty}></button>
+            <button className='btn btn-primary mb-2' onClick={addNewProperty}>Add Property</button>
             <div>
                 <table className="table table-bordered table-striped">
                     <thead>

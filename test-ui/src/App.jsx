@@ -2,7 +2,6 @@ import './App.css'
 import ListeOfProperty from "./components/ListeOfProperty.jsx";
 import HeaderComponent from "./components/HeaderComponent.jsx";
 import FooterComponent from "./components/FooterComponent.jsx";
-
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import PropertyComponent from "./components/PropertyComponent.jsx";
 

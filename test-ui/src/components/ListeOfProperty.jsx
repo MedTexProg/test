@@ -21,7 +21,7 @@ const ListeOfProperty = () => {
     }
 
     function addNewProperty() {
-        navigate('/add-todo')
+        navigate('/add-property')
     }
 
     return (
@@ -38,6 +38,7 @@ const ListeOfProperty = () => {
                         <th>Bedroom</th>
                         <th>Bathroom</th>
                         <th>Size</th>
+                        <th>images</th>
                         <th>Rent</th>
                         <th>Location</th>
                         <th>Description</th>
@@ -54,6 +55,7 @@ const ListeOfProperty = () => {
                             <td>{property.bedroom}</td>
                             <td>{property.bathroom}</td>
                             <td>{property.size}</td>
+                            <th>{property.image}</th>
                             <td>{property.rent}</td>
                             <td>{property.location}</td>
                             <td>{property.description}</td>

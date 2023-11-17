@@ -43,6 +43,7 @@ const PropertyComponent = () => {
             .catch((error) => {
                 console.error(error);
             });
+
     }
 
     return (
@@ -126,12 +127,20 @@ const PropertyComponent = () => {
                                 </input>
                             </div>
 
-                            <div className='form-group'>
-                                <label className='col-md-4 control-label' for='filebuton'>main_images</label>
-                                <div className='col-md-4'>
-                                    <input id='filebuton' name='filebutton' className='input-file' type='file'/>
+                            <div className="form-group">
+                                <label className="col-md-4 control-label" htmlFor="filebutton">
+                                    Property Images
+                                </label>
+                                <div className="col-md-4">
+                                    <input
+                                        id="filebutton"
+                                        name="filebutton"
+                                        className="input-file"
+                                        type="file"
+                                        onChange={(e) => setImages(e.target.files)}
+                                        multiple
+                                    />
                                 </div>
-
                             </div>
                             <div className='form-group mb-2'>
                                 <label className='form-label'>Property Active</label>
@@ -154,7 +163,9 @@ const PropertyComponent = () => {
                                     <option value='true'>Yes</option>
                                 </select>
                             </div>
-                            <button className='btn btn-success' onClick={(e) => saveOrUpdateProperty}>Submite</button>
+                            <button type='submit' className='btn btn-success'
+                                    onClick={(e) => saveOrUpdateProperty}>Submite
+                            </button>
                         </form>
                     </div>
                 </div>

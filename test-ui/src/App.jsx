@@ -20,7 +20,7 @@ function App() {
                     //http://locahost:8080/add-property
                     <Route path='/add-property' element={<PropertyComponent/>}></Route>
                 </Routes>
-                <FooterComponent/>
+                {/*<FooterComponent/>*/}
             </BrowserRouter>
         </>
     )

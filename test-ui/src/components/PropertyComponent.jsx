@@ -5,14 +5,14 @@ import {useNavigate} from "react-router-dom";
 
 const PropertyComponent = () => {
     const [Name, setName] = useState('');
-    const [Type, setType] = useState('');
     const [Bedroom, setBedroom] = useState('');
     const [Bathroom, setBathroom] = useState('');
     const [Size, setSize] = useState('');
     const [Rent, setRent] = useState('');
     const [Location, setLocation] = useState('');
     const [Description, setDescription] = useState('');
-    const [Images, setImages] = useState('')
+    const [Category, setCategory] = useState('');
+    const [Images, setImages] = useState('');
     const [Activate, setActivate] = useState(false);
     const [Deleted, setDeleted] = useState(false);
     const navigate = useNavigate();
@@ -22,7 +22,6 @@ const PropertyComponent = () => {
 
         const property = {
             Name,
-            Type,
             Bathroom,
             Bedroom,
             Size,
@@ -30,19 +29,18 @@ const PropertyComponent = () => {
             Location,
             Description,
             Images,
+            Category,
             Activate,
             Deleted
         };
         console.log(property);
 
-        addProperty(property)
-            .then((response) => {
-                console.log(response.data);
-                navigate('/properties');
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        addProperty(property).then((response) => {
+            console.log(response.data);
+            navigate('/');
+        }).catch((error) => {
+            console.error(error);
+        });
 
     }
 
@@ -64,17 +62,7 @@ const PropertyComponent = () => {
                                 >
                                 </input>
                             </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property type</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Type'
 
-                                    onClick={(e) => setType(e.target.value)}
-                                >
-                                </input>
-                            </div>
                             <div className='form-group mb-2'>
                                 <label className='form-label'>Property Bedroom</label>
                                 <input
@@ -102,6 +90,16 @@ const PropertyComponent = () => {
                                     type='text'
                                     placeholder='Enter Property Size'
                                     onClick={(e) => setSize(e.target.value)}
+                                >
+                                </input>
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'>Property Category</label>
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    placeholder='Enter Property Size'
+                                    onClick={(e) => setCategory(e.target.value)}
                                 >
                                 </input>
                             </div>

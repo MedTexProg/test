@@ -34,7 +34,6 @@ const ListeOfProperty = () => {
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Type</th>
                         <th>Bedroom</th>
                         <th>Bathroom</th>
                         <th>Size</th>
@@ -51,7 +50,6 @@ const ListeOfProperty = () => {
                         <tr key={property.id}>
                             <td>{property.id}</td>
                             <td>{property.name}</td>
-                            <td>{property.type}</td>
                             <td>{property.bedroom}</td>
                             <td>{property.bathroom}</td>
                             <td>{property.size}</td>

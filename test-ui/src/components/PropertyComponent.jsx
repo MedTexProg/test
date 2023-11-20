@@ -1,174 +1,155 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {addProperty} from "../services/todoservice.js";
 
-import {useNavigate} from "react-router-dom";
 
 const PropertyComponent = () => {
-    const [Name, setName] = useState('');
-    const [Bedroom, setBedroom] = useState('');
-    const [Bathroom, setBathroom] = useState('');
-    const [Size, setSize] = useState('');
-    const [Rent, setRent] = useState('');
-    const [Location, setLocation] = useState('');
-    const [Description, setDescription] = useState('');
-    const [Category, setCategory] = useState('');
-    const [Images, setImages] = useState('');
-    const [Activate, setActivate] = useState(false);
-    const [Deleted, setDeleted] = useState(false);
-    const navigate = useNavigate();
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [bedroom, setBedroom] = useState('')
+    const [bathroom, setBathroom] = useState('')
+    const [size, setSize] = useState('')
+    const [rent, setRent] = useState('')
+    const [location, setLocation] = useState('')
+    const [category, setCategory] = useState('')
+
+    const navigate = useNavigate()
+
 
     function saveOrUpdateProperty(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         const property = {
-            Name,
-            Bathroom,
-            Bedroom,
-            Size,
-            Rent,
-            Location,
-            Description,
-            Images,
-            Category,
-            Activate,
-            Deleted
-        };
+            name, description, bedroom, bathroom, size, rent, location, category
+        }
         console.log(property);
 
         addProperty(property).then((response) => {
-            console.log(response.data);
-            navigate('/');
-        }).catch((error) => {
+            console.log(response.data)
+            navigate('/properties')
+        }).catch(error => {
             console.error(error);
-        });
+        })
 
     }
 
     return (
         <div className='container'>
+            <br/> <br/>
             <div className='row'>
-                <div className=' card col-md-6 offset-md-3 offset-md-3'>
-                    <h2 className='text-center'>Add Property</h2>
-                    <div className='card-boby'>
+                <div className='card col-md-6 offset-md-3 offset-md-3'>
+                    <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
-                                <label className='form-label'>Property name</label>
+                                <label className='form-label'> Name </label>
                                 <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Name'
+                                    type={"text"}
+                                    className={'form-control'}
+                                    placeholder={'Enter Name of property'}
+                                    name={name}
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                ></input>
 
-                                    onClick={(e) => setName(e.target.value)}
-                                >
-                                </input>
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> Bedroom </label>
+                                <input
+                                    type={"number"}
+                                    className={'form-control'}
+                                    placeholder={'Enter total bedroom'}
+                                    name={bedroom}
+                                    value={bedroom}
+                                    onChange={(e) => setBedroom(e.target.value)}
+                                ></input>
+
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> Bathroom </label>
+                                <input
+                                    type={"number"}
+                                    className={'form-control'}
+                                    placeholder={'Enter total Bathroom'}
+                                    name={bathroom}
+                                    value={bathroom}
+                                    onChange={(e) => setBathroom(e.target.value)}
+                                ></input>
+
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> Square space </label>
+                                <input
+                                    type={"number"}
+                                    className={'form-control'}
+                                    placeholder={'Enter room space '}
+                                    name={size}
+                                    value={size}
+                                    onChange={(e) => setSize(e.target.value)}
+                                ></input>
+
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> paiement </label>
+                                <input
+                                    type={"number"}
+                                    className={'form-control'}
+                                    placeholder={'Enter the amount to pay'}
+                                    name={rent}
+                                    value={rent}
+                                    onChange={(e) => setRent(e.target.value)}
+                                ></input>
+
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> Address </label>
+                                <input
+                                    type={"text"}
+                                    className={'form-control'}
+                                    placeholder={'Enter Address of property'}
+                                    name={location}
+                                    value={location}
+                                    onChange={(e) => setLocation(e.target.value)}
+                                ></input>
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> Categories </label>
+                                <input
+                                    type={"number"}
+                                    className={'form-control'}
+                                    placeholder={'Enter Name of property'}
+                                    name={category}
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                ></input>
+
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='form-label'> Description </label>
+                                <input
+                                    type={"text"}
+                                    className={'form-control'}
+                                    placeholder={'Enter Description of property'}
+                                    name={description}
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                ></input>
+
                             </div>
 
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Bedroom</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Bedroom'
-                                    onClick={(e) => setBedroom(e.target.value)}
-                                >
-                                </input>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Bathroom</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Bathroom'
-                                    onClick={(e) => setBathroom(e.target.value)}
-                                >
-                                </input>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Size</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Size'
-                                    onClick={(e) => setSize(e.target.value)}
-                                >
-                                </input>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Category</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Size'
-                                    onClick={(e) => setCategory(e.target.value)}
-                                >
-                                </input>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Location</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Location'
-
-                                    onClick={(e) => setLocation(e.target.value)}
-                                >
-                                </input>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Description</label>
-                                <input
-                                    className='form-control'
-                                    type='text'
-                                    placeholder='Enter Property Description'
-                                    onClick={(e) => setDescription(e.target.value)}
-                                >
-                                </input>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="col-md-4 control-label" htmlFor="filebutton">
-                                    Property Images
-                                </label>
-                                <div className="col-md-4">
-                                    <input
-                                        id="filebutton"
-                                        name="filebutton"
-                                        className="input-file"
-                                        type="file"
-                                        onChange={(e) => setImages(e.target.files)}
-                                        multiple
-                                    />
-                                </div>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Active</label>
-                                <select
-                                    className='form-control'
-                                    value={Activate}
-                                    onChange={(e) => setActivate(e.target.value)}
-                                >
-                                    <option value='false'>No</option>
-                                    <option value='true'>Yes</option>
-                                </select>
-                            </div>
-                            <div className='form-group mb-2'>
-                                <label className='form-label'>Property Delete</label>
-                                <select className='form-control'
-                                        value={Deleted}
-                                        onChange={(e) => setDeleted(e.target.value)}
-                                >
-                                    <option value='false'>No</option>
-                                    <option value='true'>Yes</option>
-                                </select>
-                            </div>
-                            <button type='submit' className='btn btn-success'
-                                    onClick={(e) => saveOrUpdateProperty}>Submite
+                            <button className='btn btn-success'
+                                    onClick={(e) => saveOrUpdateProperty(e)}>
+                                Submit
                             </button>
                         </form>
+
                     </div>
+
                 </div>
             </div>
+
         </div>
     )
+
 }
+
 export default PropertyComponent

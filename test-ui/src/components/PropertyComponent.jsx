@@ -12,6 +12,8 @@ const PropertyComponent = () => {
     const [rent, setRent] = useState('')
     const [location, setLocation] = useState('')
     const [category, setCategory] = useState('')
+    const [isDeleted, setIsdeleted] = useState(false)
+    const [isActivated, setIsactivated] = useState(false)
 
     const navigate = useNavigate()
 
@@ -20,7 +22,7 @@ const PropertyComponent = () => {
         e.preventDefault()
 
         const property = {
-            name, description, bedroom, bathroom, size, rent, location, category
+            name, description, bedroom, bathroom, size, rent, location, category, isDeleted, isActivated
         }
         console.log(property);
 
@@ -134,6 +136,32 @@ const PropertyComponent = () => {
                                     onChange={(e) => setDescription(e.target.value)}
                                 ></input>
 
+                            </div>
+
+                            <div className='form-group mb-2'>
+                                <label className='form-label'>Delete</label>
+                                <select
+                                    className='form-control'
+                                    value={isDeleted}
+                                    onChange={(e) => setIsdeleted(e.target.value)}
+                                >
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+
+                                </select>
+                            </div>
+
+                            <div className='form-group mb-2'>
+                                <label className='form-label'>Active</label>
+                                <select
+                                    className='form-control'
+                                    value={isActivated}
+                                    onChange={(e) => setIsactivated(e.target.value)}
+                                >
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+
+                                </select>
                             </div>
 
                             <button className='btn btn-success'

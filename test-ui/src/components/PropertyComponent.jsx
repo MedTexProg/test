@@ -2,37 +2,46 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {addProperty} from "../services/todoservice.js";
 
-
 const PropertyComponent = () => {
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [bedroom, setBedroom] = useState('')
-    const [bathroom, setBathroom] = useState('')
-    const [size, setSize] = useState('')
-    const [rent, setRent] = useState('')
-    const [location, setLocation] = useState('')
-    const [category, setCategory] = useState('')
-    const [isDeleted, setIsdeleted] = useState(false)
-    const [isActivated, setIsactivated] = useState(false)
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [bedroom, setBedroom] = useState('');
+    const [bathroom, setBathroom] = useState('');
+    const [size, setSize] = useState('');
+    const [rent, setRent] = useState('');
+    const [location, setLocation] = useState('');
+    const [category, setCategory] = useState('');
+    const [isDeleted, setIsDeleted] = useState(false);
+    const [isActivated, setIsActivated] = useState(false);
 
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
 
     function saveOrUpdateProperty(e) {
-        e.preventDefault()
+        e.preventDefault();
 
         const property = {
-            name, description, bedroom, bathroom, size, rent, location, category, isDeleted, isActivated
-        }
+            name,
+            description,
+            bedroom,
+            bathroom,
+            size,
+            rent,
+            location,
+            category,
+            isDeleted,
+            isActivated
+        };
+
         console.log(property);
 
-        addProperty(property).then((response) => {
-            console.log(response.data)
-            navigate('/properties')
-        }).catch(error => {
-            console.error(error);
-        })
-
+        addProperty(property)
+            .then((response) => {
+                console.log(response.data);
+                navigate('/properties');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     return (
@@ -43,16 +52,14 @@ const PropertyComponent = () => {
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
-                                <label className='form-label'> Name </label>
+                                <label className='form-label'>Name</label>
                                 <input
-                                    type={"text"}
-                                    className={'form-control'}
-                                    placeholder={'Enter Name of property'}
-                                    name={name}
+                                    type="text"
+                                    className='form-control'
+                                    placeholder='Enter Name of property'
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                ></input>
-
+                                />
                             </div>
                             <div className='form-group mb-2'>
                                 <label className='form-label'> Bedroom </label>
@@ -116,7 +123,7 @@ const PropertyComponent = () => {
                             <div className='form-group mb-2'>
                                 <label className='form-label'> Categories </label>
                                 <input
-                                    type={"number"}
+                                    type={"text"}
                                     className={'form-control'}
                                     placeholder={'Enter Name of property'}
                                     name={category}
@@ -142,12 +149,11 @@ const PropertyComponent = () => {
                                 <label className='form-label'>Delete</label>
                                 <select
                                     className='form-control'
-                                    value={isDeleted}
-                                    onChange={(e) => setIsdeleted(e.target.value)}
+                                    value={isDeleted.toString()}
+                                    onChange={(e) => setIsDeleted(e.target.value === 'true')}
                                 >
                                     <option value="false">No</option>
                                     <option value="true">Yes</option>
-
                                 </select>
                             </div>
 
@@ -155,29 +161,26 @@ const PropertyComponent = () => {
                                 <label className='form-label'>Active</label>
                                 <select
                                     className='form-control'
-                                    value={isActivated}
-                                    onChange={(e) => setIsactivated(e.target.value)}
+                                    value={isActivated.toString()}
+                                    onChange={(e) => setIsActivated(e.target.value === 'true')}
                                 >
                                     <option value="false">No</option>
                                     <option value="true">Yes</option>
-
                                 </select>
                             </div>
 
-                            <button className='btn btn-success'
-                                    onClick={(e) => saveOrUpdateProperty(e)}>
+                            <button
+                                className='btn btn-success'
+                                onClick={(e) => saveOrUpdateProperty(e)}
+                            >
                                 Submit
                             </button>
                         </form>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
-    )
+    );
+};
 
-}
-
-export default PropertyComponent
+export default PropertyComponent;
